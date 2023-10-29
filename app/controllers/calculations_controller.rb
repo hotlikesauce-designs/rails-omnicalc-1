@@ -57,5 +57,24 @@ class CalculationsController < ApplicationController
     render({:template=>"calculations_templates/payment_output"})
   end
   ################################################################
-  
+  def random_new
+    #pp params
+    render({:template=>"home_templates/random"}) #note: don't need to include .html.erb tag
+  end
+  def random_results
+    @min_input = params.fetch("user_min").to_f
+    @max_input = params.fetch("user_max").to_f
+
+    def random_number(min, max)
+      if min.is_a?(Numeric) && max.is_a?(Numeric)
+        rand * (max - min) + min
+      else
+        raise ArgumentError, "Both 'min' and 'max' must be numeric values."
+      end
+    end
+
+    @output = random_number(@min_input, @max_input)
+
+    render({:template=>"calculations_templates/random_output"}) #note: don't need to include .html.erb tag
+  end  
 end
