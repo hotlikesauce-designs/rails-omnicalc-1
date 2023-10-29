@@ -26,6 +26,6 @@ class CalculationsController < ApplicationController
   def payment_results
     @input = params.fetch("user_number")
     @output = (@input.to_f**(0.5))
-    render({:template=>"calculations_templates/square_root_output"}) #note: don't need to include .html.erb tag
+    render({:template=>"calculations_templates/payment_output"}) #note: don't need to include .html.erb tag
   end
 end
